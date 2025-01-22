@@ -1,0 +1,22 @@
+# Web framework
+fastapi==0.109.0
+uvicorn==0.29.0
+
+# Database ORM
+SQLAlchemy==2.0.25
+
+# Stripe API client
+stripe==7.9.0
+
+# Messaging Queue (Kafka)
+kafka-python==2.0.2
+
+# Environment Variable Management
+python-dotenv==1.0.1
+
+# Asynchronous Processing
+celery==5.3.6
+
+# Testing and Logging
+pytest==8.0.0
+loguru==0.7.2
