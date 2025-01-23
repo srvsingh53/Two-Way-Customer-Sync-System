@@ -16,14 +16,14 @@ consumer = KafkaConsumer(
 )
 
 def consume_events():
-    logger.info("Consumer started, listening for events...")
+    #logger.info("Consumer started, listening for events...")
     for message in consumer:
         event_data = message.value
-        logger.info(f"Received event: {event_data}")
+        #logger.info(f"Received event: {event_data}")
         
         if event_data['event'] == 'customer_created':
             stripe_customer_id = create_customer(event_data['data']['name'], event_data['data']['email'])
-            if stripe_customer_id:
-                logger.info(f"Customer created in Stripe with ID: {stripe_customer_id}")
-            else:
-                logger.error("Failed to create customer in Stripe.")
+            # if stripe_customer_id:
+            #     logger.info(f"Customer created in Stripe with ID: {stripe_customer_id}")
+            # else:
+            #     logger.error("Failed to create customer in Stripe.")

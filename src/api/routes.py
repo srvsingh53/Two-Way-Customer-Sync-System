@@ -1,23 +1,21 @@
-from fastapi import FastAPI, Depends
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from src.database.db import get_db
 from src.database.models import Customer
 from src.services.kafka_producer import send_to_kafka
-
-app = FastAPI()
-
 from pydantic import BaseModel
+
+router = APIRouter()
 
 class CustomerRequest(BaseModel):
     name: str
     email: str
 
-@app.get("/checking")
+@router.get("/checking")
 def check_fun():
     return {"message": "this endpoint is working"}
 
-
-@app.post("/customers/")
+@router.post("/customers/")
 def create_customer(customer_request: CustomerRequest, db: Session = Depends(get_db)):
     customer = Customer(name=customer_request.name, email=customer_request.email)
     db.add(customer)
